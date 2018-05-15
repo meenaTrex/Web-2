@@ -41,7 +41,12 @@ route.get('/:id/batches', (req, res) => {
             }
         })
             .then((batches) => {
-            res.json(batches);
+            if (batches.length !== 0) {
+                res.json(batches);
+            }
+            else {
+                res.json("Sorry!! no batches of given student");
+            }
         });
     });
 });

@@ -47,7 +47,7 @@ route.get('/:id/batches', (req, res) => {
                     res.json(batches);
                 }
                 else {
-                    res.json("No batches");
+                    res.json("Sorry No batches of given teacher");
                 }
             });
         })

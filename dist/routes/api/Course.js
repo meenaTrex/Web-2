@@ -42,11 +42,11 @@ route.get('/:id/batches', (req, res) => {
         }
     });
 });
-route.get('/:id1/batches/:id2', (req, res) => {
+route.get('/:id1/batches/:batchId', (req, res) => {
     CourseManagementApp_2.Batch.findAll({
         where: {
             courseId: req.params.id1,
-            id: req.params.id2
+            id: req.params.batchId
         }
     })
         .then((batch) => {
@@ -132,24 +132,6 @@ route.get('/:id1/batches/:id2/students', (req, res) => {
         })
             .then((studentBatches) => {
             let studentIds = [];
-            // console.log(studentBatches);
-            // studentBatches.forEach(element => {
-            //      Student.findAll({
-            //             where:{
-            //                     id:element.studentId
-            //                 }
-            //         }).then((student)=>{
-            //             // console.log(student);
-            //             for(var i=0;i<student.length;i++){
-            //                 // console.log(student[i]);
-            //                 studentArray.push(student[i]);
-            //                 console.log(studentArray);
-            //             }
-            //         })
-            //             .catch((err)=>{
-            //                 console.log(err);
-            //             })
-            //     })
             studentBatches.forEach(element => {
                 studentIds.push(element.studentId);
             });
@@ -159,7 +141,12 @@ route.get('/:id1/batches/:id2/students', (req, res) => {
                 }
             })
                 .then((students) => {
-                res.json(students);
+                if (students.length !== 0) {
+                    res.json(students);
+                }
+                else {
+                    res.json("Sorry no such students of given batch of a course");
+                }
             })
                 .catch((err) => {
                 console.log(err);
