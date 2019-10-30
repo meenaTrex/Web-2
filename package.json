@@ -13,7 +13,7 @@
   "dependencies": {
     "express": "^4.16.3",
     "express-session": "^1.15.6",
-    "sequelize": "^4.37.7",
+    "sequelize": "^5.15.1",
     "sqlite3": "^4.0.0",
     "typescript": "^2.8.3",
     "typings": "^2.1.1"
